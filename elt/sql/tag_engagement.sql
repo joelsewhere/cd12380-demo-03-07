@@ -5,14 +5,8 @@ WITH pageviews AS (
     FROM "raw".scraped_quotes.pageviews
 ),
 unnested_tags AS (
-    SELECT
-        author,
-        quote,
-        t AS tag_value
-    FROM (
-        SELECT q.author, q.quote, t
-        FROM "raw".scraped_quotes.quotes q, q.tags AS t
-    )
+    SELECT q.author, q.quote, t AS tag_value
+    FROM "raw".scraped_quotes.quotes q, q.tags AS t
 )
 SELECT
     t.tag_value,
